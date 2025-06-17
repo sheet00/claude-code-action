@@ -87,6 +87,11 @@ inputs:
     required: false
     default: "30"
 
+  node_version:
+    description: "Node.js version to use for setup"
+    required: false
+    default: "18.x"
+
 outputs:
   execution_file:
     description: "Path to the Claude Code execution output file"
@@ -147,6 +152,7 @@ runs:
         # Model configuration
         ANTHROPIC_MODEL: ${{ inputs.model || inputs.anthropic_model }}
         GITHUB_TOKEN: ${{ steps.prepare.outputs.GITHUB_TOKEN }}
+        NODE_VERSION: ${{ inputs.node_version }}
 
         # Provider configuration
         ANTHROPIC_BASE_URL: ${{ env.ANTHROPIC_BASE_URL }}
